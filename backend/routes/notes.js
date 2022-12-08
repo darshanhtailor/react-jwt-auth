@@ -63,9 +63,8 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
     try {
         // checking is this same user who entered notes
         const n = await Notes.findById(req.params.id)
-        if(!n) return res.status(404).send("Not found")
+        if(!n) return res.status(404).send("Not found..!!")
         if(n.user.toString() !== req.user.id) return res.send(401).send("Unauthorized")
-    
         // find the note to be updated and update it
         const note = await Notes.findByIdAndDelete(req.params.id);
         res.send("Note has been deleted");
